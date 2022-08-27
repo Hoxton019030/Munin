@@ -6,11 +6,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface MemberDao extends JpaRepository<Member, Integer> {
 
     @Query(value = "SELECT * FROM MEMBER WHERE id =:id",nativeQuery = true)
-    public Member findMemberById(@Param("id") String id);
+    public Optional<Member> findMemberById(@Param("id") String id);
 
 
 
