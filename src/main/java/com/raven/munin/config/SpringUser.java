@@ -28,29 +28,45 @@ public class SpringUser implements UserDetails {
 
     @Override
     public String getPassword() {
-        return member.getCode();
+        return member.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return member.getId();
     }
 
+    /**
+     * 驗證此帳號是否未過期
+     * @return
+     */
     @Override
     public boolean isAccountNonExpired() {
         return false;
     }
 
+    /**
+     * 驗證此帳號是否未被封鎖
+     * @return
+     */
     @Override
     public boolean isAccountNonLocked() {
         return false;
     }
 
+    /**
+     * 驗證此帳號憑證是否未過期
+     * @return
+     */
     @Override
     public boolean isCredentialsNonExpired() {
         return false;
     }
 
+    /**
+     * 驗證此帳號是否可以使用
+     * @return
+     */
     @Override
     public boolean isEnabled() {
         return false;

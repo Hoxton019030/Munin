@@ -17,7 +17,7 @@ public class MemberServiceTest {
     @Test
     public void createMember(){
         MemberReq newMember = MemberReq.builder().id("S03").
-                code("123").
+                password("123").
                 name("Hoxton").
                 createTime(LocalDateTime.now()).
                 updateTime(LocalDateTime.now()).

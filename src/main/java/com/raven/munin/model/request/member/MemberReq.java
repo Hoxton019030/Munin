@@ -7,7 +7,6 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 
 @Data
@@ -22,7 +21,7 @@ public class MemberReq extends Request {
     @NotBlank(message = "不能為空")
     private String name;
     @NotBlank(message = "不能為空")
-    private String code;
+    private String password;
 
     private MemberAuthority authority;
 

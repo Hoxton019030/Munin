@@ -1,6 +1,5 @@
 package com.raven.munin.model.service;
 
-import com.raven.munin.enumeration.MemberAuthority;
 import com.raven.munin.contorller.exception.MemberException;
 import com.raven.munin.model.dao.MemberDao;
 import com.raven.munin.model.entity.Member;
@@ -31,7 +30,7 @@ public class MemberService {
             Member newMember = new Member(
                     memberReq.getId(),
                     memberReq.getName(),
-                    passwordEncoder.encode(memberReq.getCode()) ,
+                    passwordEncoder.encode(memberReq.getPassword()) ,
                     LocalDateTime.now(),
                     LocalDateTime.now(),
                     memberReq.getAuthority());

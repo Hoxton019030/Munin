@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,6 +26,6 @@ public class SpringUserService implements UserDetailsService {
         Member member = memberService.findMemberById(username);
         memberAuthority.add(member.getAuthority());
         List<SimpleGrantedAuthority> authorities = memberAuthority.stream().map(auth -> new SimpleGrantedAuthority(auth.name())).collect(Collectors.toList());
-        return new User(member.getId(), member.getCode(), authorities);
+        return new User(member.getId(), member.getPassword(), authorities);
     }
 }

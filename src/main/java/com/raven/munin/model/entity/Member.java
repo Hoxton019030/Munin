@@ -5,7 +5,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Data
@@ -31,7 +30,7 @@ public class Member {
      * password(hashcode)
      */
     @Column(name = "CODE", columnDefinition = "CHARACTER VARYING(500)", nullable = false)
-    private String code;
+    private String password;
 
     /**
      * create time
@@ -50,10 +49,10 @@ public class Member {
     @Column(name = "AUTHORITY", columnDefinition = "VARCHAR(500)", nullable = false)
     private MemberAuthority authority;
 
-    public Member(String id, String name, String code, LocalDateTime createTime, LocalDateTime updateTime, MemberAuthority authority) {
+    public Member(String id, String name, String password, LocalDateTime createTime, LocalDateTime updateTime, MemberAuthority authority) {
         this.id = id;
         this.name = name;
-        this.code = code;
+        this.password = password;
         this.createTime = createTime;
         this.updateTime = updateTime;
         this.authority = authority;
