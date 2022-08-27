@@ -1,5 +1,6 @@
 package com.raven.munin.config;
 
+import com.raven.munin.enumeration.MemberAuthority;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,7 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
                 .antMatchers(HttpMethod.GET, "/users/**").authenticated()
-                .antMatchers(HttpMethod.GET,"/h2/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/h2/**").hasAuthority(MemberAuthority.SYSTEM_ADMIN.name())
                 .antMatchers(HttpMethod.GET).permitAll()
                 .antMatchers(HttpMethod.POST, "/users").permitAll()
                 .anyRequest().permitAll()
