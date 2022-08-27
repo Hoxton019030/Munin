@@ -16,16 +16,21 @@ public class MemberServiceTest {
 
     @Test
     public void createMember(){
-        MemberReq newMember = MemberReq.builder().id("S02").
+        MemberReq newMember = MemberReq.builder().id("S06").
                 code("123").
                 name("Hoxton").
                 createTime(LocalDateTime.now()).
                 updateTime(LocalDateTime.now()).
-        authority(MemberAuthority.NORMAL_MEMBER).build();
+        authority(MemberAuthority.getEnum("SYSTEM_ADMIN")).build();
+        System.out.println(newMember);
 
 
         memberService.createMember(newMember);
 
+    }
+    @Test
+    public void print(){
+        System.out.println(MemberAuthority.BANNED_MEMBER);
     }
 
 }

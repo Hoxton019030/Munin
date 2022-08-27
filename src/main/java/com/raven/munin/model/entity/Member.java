@@ -46,7 +46,7 @@ public class Member {
     @Column(name = "UPDATE_TIME", columnDefinition = "TIMESTAMP", nullable = true)
     private LocalDateTime updateTime;
 
-    @Column(name = "AUTHORITY", columnDefinition = "CHARACTER VARYING(500)", nullable = false)
+    @Column(name = "AUTHORITY", columnDefinition = "VARCHAR(500)", nullable = false)
     private MemberAuthority authority;
 
     public Member(String id, String name, String code, LocalDateTime createTime, LocalDateTime updateTime, MemberAuthority authority) {
