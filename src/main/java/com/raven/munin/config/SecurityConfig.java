@@ -19,11 +19,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
-                .antMatchers(HttpMethod.GET, "/users/**").authenticated()
+                .antMatchers(HttpMethod.GET, "/users/**").hasAuthority(MemberAuthority.SYSTEM_ADMIN.name())
                 .antMatchers(HttpMethod.GET,"/h2/**").hasAuthority(MemberAuthority.SYSTEM_ADMIN.name())
                 .antMatchers(HttpMethod.GET).permitAll()
                 .antMatchers(HttpMethod.POST, "/users").permitAll()
-                .anyRequest().permitAll()
+//                .anyRequest().permitAll()
                 .and()
                 .csrf().disable()
                 .formLogin();
