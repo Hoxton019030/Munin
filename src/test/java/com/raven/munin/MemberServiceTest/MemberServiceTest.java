@@ -16,12 +16,12 @@ public class MemberServiceTest {
 
     @Test
     public void createMember(){
-        MemberReq newMember = MemberReq.builder().id("S11").
+        MemberReq newMember = MemberReq.builder().id("S02").
                 code("123").
                 name("Hoxton").
                 createTime(LocalDateTime.now()).
                 updateTime(LocalDateTime.now()).
-        authority(MemberAuthority.BOARD_MANAGER).build();
+        authority(MemberAuthority.SYSTEM_ADMIN).build();
         System.out.println(newMember);
 
 

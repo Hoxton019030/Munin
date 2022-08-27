@@ -3,7 +3,10 @@ package com.raven.munin.enumeration;
 import org.junit.Test;
 
 public enum MemberAuthority {
-    SYSTEM_ADMIN, BOARD_MANAGER, NORMAL_MEMBER, BANNED_MEMBER;
+    SYSTEM_ADMIN,
+    BOARD_MANAGER,
+    NORMAL_MEMBER,
+    BANNED_MEMBER;
 
 
 
