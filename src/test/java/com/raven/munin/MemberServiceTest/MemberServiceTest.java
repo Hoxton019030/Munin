@@ -16,14 +16,13 @@ public class MemberServiceTest {
 
     @Test
     public void createMember(){
-        MemberReq newMember = MemberReq.builder().id("S03").
+        MemberReq newMember = MemberReq.builder().id("S04").
                 password("123").
                 name("Hoxton").
                 createTime(LocalDateTime.now()).
                 updateTime(LocalDateTime.now()).
         authority(MemberAuthority.BOARD_MANAGER).build();
         System.out.println(newMember);
-
 
         memberService.createMember(newMember);
 
