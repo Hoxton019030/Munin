@@ -1,6 +1,6 @@
-
 package com.raven.munin.model.entity;
 
+import com.raven.munin.enumeration.MemberAuthority;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -30,7 +30,7 @@ public class Member {
      * password(hashcode)
      */
     @Column(name = "CODE", columnDefinition = "CHARACTER VARYING(500)", nullable = false)
-    private String code;
+    private String password;
 
     /**
      * create time
@@ -45,7 +45,22 @@ public class Member {
     @Column(name = "UPDATE_TIME", columnDefinition = "TIMESTAMP", nullable = true)
     private LocalDateTime updateTime;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "AUTHORITY", columnDefinition = "VARCHAR(500)", nullable = false)
+    private MemberAuthority authority;
 
+    public Member(String id, String name, String password, LocalDateTime createTime, LocalDateTime updateTime, MemberAuthority authority) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.authority = authority;
+    }
+
+    public Member() {
+    }
+    //
 }
 
 
