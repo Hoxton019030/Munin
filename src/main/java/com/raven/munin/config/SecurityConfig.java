@@ -23,7 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/h2/**").hasAuthority(MemberAuthority.SYSTEM_ADMIN.name())
                 .antMatchers(HttpMethod.GET).permitAll()
                 .antMatchers(HttpMethod.POST, "/users").permitAll()
-//                .anyRequest().permitAll()
+///               .anyRequest().permitAll()
                 .and()
                 .csrf().disable()
                 .formLogin();
