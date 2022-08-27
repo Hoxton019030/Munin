@@ -1,5 +1,6 @@
 package com.raven.munin.model.request.member;
 
+import com.raven.munin.enumeration.MemberAuthority;
 import com.raven.munin.model.request.base.Request;
 import lombok.Builder;
 import lombok.Data;
@@ -23,7 +24,11 @@ public class MemberReq extends Request {
     @NotBlank(message = "不能為空")
     private String code;
 
+    private MemberAuthority authority;
+
     private LocalDateTime createTime;
+
     private LocalDateTime updateTime;
+
 
 }

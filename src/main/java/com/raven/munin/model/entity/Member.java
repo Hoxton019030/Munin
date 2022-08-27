@@ -1,10 +1,11 @@
-
 package com.raven.munin.model.entity;
 
+import com.raven.munin.enumeration.MemberAuthority;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -45,16 +46,19 @@ public class Member {
     @Column(name = "UPDATE_TIME", columnDefinition = "TIMESTAMP", nullable = true)
     private LocalDateTime updateTime;
 
-    public Member(String id, String name, String code, LocalDateTime createTime, LocalDateTime updateTime) {
+    @Column(name = "AUTHORITY", columnDefinition = "CHARACTER VARYING(500)", nullable = false)
+    private MemberAuthority authority;
+
+    public Member(String id, String name, String code, LocalDateTime createTime, LocalDateTime updateTime, MemberAuthority authority) {
         this.id = id;
         this.name = name;
         this.code = code;
         this.createTime = createTime;
         this.updateTime = updateTime;
+        this.authority = authority;
     }
 
     public Member() {
-
     }
 }
 

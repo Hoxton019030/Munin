@@ -1,4 +1,4 @@
-package com.raven.munin.exception;
+package com.raven.munin.contorller.exception;
 
 import lombok.Data;
 

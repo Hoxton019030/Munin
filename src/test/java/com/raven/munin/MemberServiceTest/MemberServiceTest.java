@@ -1,5 +1,6 @@
 package com.raven.munin.MemberServiceTest;
 
+import com.raven.munin.enumeration.MemberAuthority;
 import com.raven.munin.model.request.member.MemberReq;
 import com.raven.munin.model.service.MemberService;
 import org.junit.jupiter.api.Test;
@@ -19,7 +20,8 @@ public class MemberServiceTest {
                 code("123").
                 name("Hoxton").
                 createTime(LocalDateTime.now()).
-                updateTime(LocalDateTime.now()).build();
+                updateTime(LocalDateTime.now()).
+        authority(MemberAuthority.NORMAL_MEMBER).build();
 
 
         memberService.createMember(newMember);

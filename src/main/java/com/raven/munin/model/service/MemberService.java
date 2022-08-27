@@ -1,13 +1,13 @@
 package com.raven.munin.model.service;
 
-import com.raven.munin.exception.MemberException;
+import com.raven.munin.enumeration.MemberAuthority;
+import com.raven.munin.contorller.exception.MemberException;
 import com.raven.munin.model.dao.MemberDao;
 import com.raven.munin.model.entity.Member;
 import com.raven.munin.model.request.member.MemberReq;
 import com.raven.munin.model.response.member.MemberRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,7 +28,7 @@ public class MemberService {
     public MemberRes createMember(MemberReq memberReq){
         Optional<Member> member = memberDao.findMemberById(memberReq.getId());
         if(member.isEmpty()){
-            Member newMember = new Member(memberReq.getId(),memberReq.getName(),passwordEncoder.encode(memberReq.getCode()) , LocalDateTime.now(),LocalDateTime.now());
+            Member newMember = new Member(memberReq.getId(),memberReq.getName(),passwordEncoder.encode(memberReq.getCode()) , LocalDateTime.now(),LocalDateTime.now(),MemberAuthority.NORMAL_MEMBER);
             memberDao.save(newMember);
             return MemberRes.builder().member(newMember).build();
         }
