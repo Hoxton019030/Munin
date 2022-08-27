@@ -1,6 +1,7 @@
 package com.raven.munin.model.request.member;
 
 import com.raven.munin.model.request.base.Request;
+import lombok.Builder;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
@@ -9,7 +10,7 @@ import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 
 @Data
-
+@Builder
 public class MemberReq extends Request {
 
     // TODO: 2022/8/27 可以補上正則表達式的限制 @Pattern

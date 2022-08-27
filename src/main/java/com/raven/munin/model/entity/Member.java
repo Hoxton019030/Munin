@@ -52,6 +52,10 @@ public class Member {
         this.createTime = createTime;
         this.updateTime = updateTime;
     }
+
+    public Member() {
+
+    }
 }
 
 
