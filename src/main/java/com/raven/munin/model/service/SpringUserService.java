@@ -18,6 +18,7 @@ public class SpringUserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        // TODO: 2022/8/27 應自訂一個錯誤類別是找不到使用者的部分
         Member member = memberService.findMemberById(username);
         return new User(member.getId(), member.getCode(), Collections.emptyList());
     }
