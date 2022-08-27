@@ -45,7 +45,13 @@ public class Member {
     @Column(name = "UPDATE_TIME", columnDefinition = "TIMESTAMP", nullable = true)
     private LocalDateTime updateTime;
 
-
+    public Member(String id, String name, String code, LocalDateTime createTime, LocalDateTime updateTime) {
+        this.id = id;
+        this.name = name;
+        this.code = code;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+    }
 }
 
 

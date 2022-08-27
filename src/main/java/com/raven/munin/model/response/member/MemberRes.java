@@ -6,9 +6,15 @@ import lombok.Builder;
 import lombok.Data;
 
 @Builder
+@Data
 public class MemberRes extends ResBody {
 
     private Member member;
 
+    public MemberRes() {
+    }
 
+    public MemberRes(Member member) {
+        this.member = member;
+    }
 }
