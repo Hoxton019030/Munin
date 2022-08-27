@@ -28,7 +28,13 @@ public class MemberService {
     public MemberRes createMember(MemberReq memberReq){
         Optional<Member> member = memberDao.findMemberById(memberReq.getId());
         if(member.isEmpty()){
-            Member newMember = new Member(memberReq.getId(),memberReq.getName(),passwordEncoder.encode(memberReq.getCode()) , LocalDateTime.now(),LocalDateTime.now(),MemberAuthority.NORMAL_MEMBER);
+            Member newMember = new Member(
+                    memberReq.getId(),
+                    memberReq.getName(),
+                    passwordEncoder.encode(memberReq.getCode()) ,
+                    LocalDateTime.now(),
+                    LocalDateTime.now(),
+                    memberReq.getAuthority());
             memberDao.save(newMember);
             return MemberRes.builder().member(newMember).build();
         }

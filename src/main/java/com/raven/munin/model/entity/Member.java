@@ -46,6 +46,7 @@ public class Member {
     @Column(name = "UPDATE_TIME", columnDefinition = "TIMESTAMP", nullable = true)
     private LocalDateTime updateTime;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "AUTHORITY", columnDefinition = "VARCHAR(500)", nullable = false)
     private MemberAuthority authority;
 
