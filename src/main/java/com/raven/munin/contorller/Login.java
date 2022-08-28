@@ -27,6 +27,14 @@ public class Login {
         return ResponseEntity.ok(response);
     }
 
+    @PostMapping("/parse")
+    public ResponseEntity<Map<  String, Object>> parseToken(@RequestBody Map<String,String> request){
+        String token = request.get("token");
+        Map<String, Object> response = jwtService.parseToken(token);
+        return ResponseEntity.ok(response);
+    }
+
+
     @GetMapping(value = "/")
     public ResponseEntity<Map<String, String>> helloLogin() {
         HashMap<String, String> map = new HashMap<>();

@@ -45,7 +45,7 @@ public class JwtService {
         // 雖然這邊返回的都是Authentication的物件，但principal的資料會變成UserDetailsService的回傳值，也就是UserDetails
 
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.MINUTE, 2);
+        calendar.add(Calendar.MINUTE, 120);
 
 
         {
@@ -66,7 +66,7 @@ public class JwtService {
         //準備好一密鑰
         JwtParser parser = Jwts.parserBuilder().setSigningKey(secretKey).build();
         //建立解析器，建立簽名
-        Claims claims = parser.parseClaimsJwt(token).getBody();
+        Claims claims = parser.parseClaimsJws(token).getBody();
         //透過解析器的parseClaimJwt方法，可以解析含有簽名的JWT，再呼叫getBody方法，取得claims(所有權)物件，
         //若JWT的內容有存生肖期間或到期期間，在解析時，parser會去自動判斷這個token是否在有效期間內，若不在
         //期間內則會拋出io.jsonwebtoken.ExpiredJwtException的例外
