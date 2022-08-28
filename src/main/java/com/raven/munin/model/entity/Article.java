@@ -11,8 +11,8 @@ public class    Article {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", nullable = false, columnDefinition = "INTEGER")
-    private Integer id;
+    @Column(name = "SEQ", nullable = false, columnDefinition = "INTEGER")
+    private Integer SEQ;
 
     /**
      * Article's title
@@ -43,6 +43,9 @@ public class    Article {
      */
     @Column(name="VISIBLE",columnDefinition = "int",nullable = false)
     private int visible;
+
+    @Column(name = "VIEWS",columnDefinition = "int",nullable = false)
+    private int views;
 
 
     /**
