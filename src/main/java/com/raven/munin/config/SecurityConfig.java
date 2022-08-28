@@ -47,12 +47,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**
      *
-     * @param auth 配置全局驗證資訊，如Authentication Provider,UserDetailService
+     * @param auth 配置全局驗證資訊，如Authentication Provider,UserDetailService等等資訊，
+     *             authenticationManager會接收到UsernamePasswordAuthenticationToken傳入的資料後
+     *             調用SecurityConfig中所配置的userDetailsService,passwordEncoder來協助驗證
+     *
      * @throws Exception
      */
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
-
-
     }
 }
