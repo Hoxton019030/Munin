@@ -2,6 +2,7 @@ package com.raven.munin.config;
 
 import com.raven.munin.enumeration.MemberAuthority;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -16,6 +17,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private    UserDetailsService userDetailsService;
+
+    /**
+     * 協助帳號密碼認證的東西
+     * @return
+     */
+    @Bean
+    public AuthenticationManager authenticationManagerBean(){
+        try {
+            return super.authenticationManagerBean();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
