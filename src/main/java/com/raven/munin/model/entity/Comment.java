@@ -18,4 +18,6 @@ public class Comment {
     @Column(name="commentContent",nullable = false,columnDefinition = "CHARACTER VARYING(150)")
     private String commentContent;
 
+    @Column(name="VISIBLE",columnDefinition = "int",nullable = false)
+    private int visible;
 }

@@ -39,6 +39,13 @@ public class    Article {
     private String content;
 
     /**
+     * 控制文章是否可被一般用戶所看見，1為可以，2為不行
+     */
+    @Column(name="VISIBLE",columnDefinition = "int",nullable = false)
+    private int visible;
+
+
+    /**
      * create time
      */
     @Column(name = "CREATE_TIME", columnDefinition = "TIMESTAMP default FORMATDATETIME(LOCALTIMESTAMP(),'yyyy-MM-dd HH:mm:ss')", nullable = false)
