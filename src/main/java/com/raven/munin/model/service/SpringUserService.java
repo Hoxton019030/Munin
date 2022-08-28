@@ -23,7 +23,6 @@ public class SpringUserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         ArrayList<MemberAuthority> memberAuthority = new ArrayList<>();
-        System.out.println("eeeeeeeeeeeeeeee");
         Member member = memberService.findMemberById(username);
         memberAuthority.add(member.getAuthority());
         List<SimpleGrantedAuthority> authorities = memberAuthority.stream().map(auth -> new SimpleGrantedAuthority(auth.name())).collect(Collectors.toList());

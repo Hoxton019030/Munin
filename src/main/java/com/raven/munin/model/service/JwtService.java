@@ -1,40 +1,32 @@
 package com.raven.munin.model.service;
 
-import com.google.gson.Gson;
 import com.raven.munin.auth.AuthRequest;
-import com.raven.munin.properties.JwToken;
+import com.raven.munin.properties.JwTokenProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.gson.GsonProperties;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
 import java.util.Calendar;
 import java.util.Map;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @Service
 public class JwtService {
 
     @Autowired
-    private JwToken jwToken;
-
+    private JwTokenProperties jwTokenProperties;
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    // FIXME: 2022/8/28 不知道為什麼作用不了，使用debugger確認後發現AuthenticationManager一直是null，但不知道怎麼解決
     public String generateToken(AuthRequest request) {
         Authentication usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword());
         // AuthenticationManager支持多種身分驗證方式，執行時會接收Authentication介面的物件。若是以帳號密碼的方式來驗證，
@@ -48,7 +40,7 @@ public class JwtService {
         // 雖然這邊返回的都是Authentication的物件，但principal的資料會變成UserDetailsService的回傳值，也就是UserDetails
 
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.MINUTE, 120);
+        calendar.add(Calendar.MINUTE, jwTokenProperties.getEXPIRATION_TIME());
 
 
         {
@@ -56,7 +48,7 @@ public class JwtService {
             claims.put("username", userDetails.getUsername()); //設置使用者帳號
             claims.setExpiration(calendar.getTime()); //設置到期時間
             claims.setIssuer("Programming Classroom"); //設置核發者
-            SecretKey secretKey = Keys.hmacShaKeyFor(jwToken.getKEY().getBytes());
+            SecretKey secretKey = Keys.hmacShaKeyFor(jwTokenProperties.getKEY().getBytes());
 
 
             return Jwts.builder().setClaims(claims).signWith(secretKey).compact();
@@ -65,7 +57,7 @@ public class JwtService {
 
     }
     public Map<String,Object> parseToken(String token){
-        SecretKey secretKey = Keys.hmacShaKeyFor(jwToken.getKEY().getBytes());
+        SecretKey secretKey = Keys.hmacShaKeyFor(jwTokenProperties.getKEY().getBytes());
         //準備好一密鑰
         JwtParser parser = Jwts.parserBuilder().setSigningKey(secretKey).build();
         //建立解析器，建立簽名

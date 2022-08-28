@@ -9,6 +9,9 @@ spring:
   sql:
     init:
       mode: always
+  main:
+    #TODO 這是jwtFilter jwtService JwtAuthentication三者有循環依賴的問題
+    allow-circular-references: true
 
   datasource:
     url: jdbc:h2:~/munin;AUTO_SERVER=true
@@ -23,6 +26,7 @@ spring:
       ddl-auto: update
 
 jwt:
-  EXPIRATION_TIME: 1 * 60 * 1000
+  EXPIRATION_TIME: 120
+  # 時間為分鐘
   SECRET : "1337"
   KEY : "HuginAndMuninThoughtAndMemory19970910"

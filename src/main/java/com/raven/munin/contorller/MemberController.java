@@ -16,5 +16,5 @@ public class MemberController {
     public Member findMemberById(@PathVariable("id")String id){
         return memberService.findMemberById(id);
     }
-
+    //
 }

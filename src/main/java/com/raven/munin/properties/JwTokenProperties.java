@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 @ConfigurationProperties(prefix = "jwt")
-public class JwToken {
+public class JwTokenProperties {
     private String KEY;
+    private int   EXPIRATION_TIME;
 }

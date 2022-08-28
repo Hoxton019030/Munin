@@ -23,6 +23,7 @@ public class Login {
     @PostMapping(value = "/")
     public ResponseEntity<Map<  String, String>> issueToken(@Valid @RequestBody AuthRequest request) {
         String token = jwtService.generateToken(request);
+        System.out.println("token = " + token);
         Map<String, String> response = Collections.singletonMap("token", token);
         return ResponseEntity.ok(response);
     }
