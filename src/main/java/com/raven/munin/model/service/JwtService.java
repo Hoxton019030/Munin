@@ -1,5 +1,6 @@
 package com.raven.munin.model.service;
 
+import com.google.gson.Gson;
 import com.raven.munin.auth.AuthRequest;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtParser;
@@ -7,6 +8,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.gson.GsonProperties;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -24,7 +26,7 @@ import java.util.stream.Collectors;
 @Service
 public class JwtService {
 
-    private final String KEY = "HuginAndMunin ";
+    private final String KEY = "HuginAndMuninThoughtAndMemory19970910";
 
     @Autowired
     private AuthenticationManager authenticationManager;

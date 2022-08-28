@@ -34,16 +34,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
-                .antMatchers(HttpMethod.GET, "/users/**").hasAuthority(MemberAuthority.SYSTEM_ADMIN.name())
-                .antMatchers(HttpMethod.GET,"/h2/**").hasAuthority(MemberAuthority.SYSTEM_ADMIN.name())
-                .antMatchers(HttpMethod.GET).permitAll()
-                .antMatchers(HttpMethod.POST, "/users").permitAll()
-///               .anyRequest().permitAll()
+//                .antMatchers(HttpMethod.GET, "/users/**").hasAuthority(MemberAuthority.SYSTEM_ADMIN.name())
+//                .antMatchers(HttpMethod.GET,"/h2/**").hasAuthority(MemberAuthority.SYSTEM_ADMIN.name())
+//                .antMatchers(HttpMethod.GET,"/login").permitAll()
+//                .antMatchers(HttpMethod.POST,"login").permitAll()
+//                .antMatchers(HttpMethod.POST, "/users").permitAll()
+                .anyRequest().permitAll()
                 .and()
-                .csrf().disable()
-                .formLogin();
+                .csrf().disable();
+//                .formLogin();
+//        http.headers().frameOptions().disable();
         //讓spring Security可以和h2建立連線
-        http.headers().frameOptions().disable();
     }
 
     /**

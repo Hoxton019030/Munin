@@ -6,27 +6,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value = "/user",produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
 public class Login {
 
     @Autowired
     private JwtService jwtService;
 
-    @PostMapping
-    public ResponseEntity<Map<String,String>> issueToken(@Valid @RequestBody AuthRequest request){
+    @PostMapping(value = "/")
+    public ResponseEntity<Map<  String, String>> issueToken(@Valid @RequestBody AuthRequest request) {
         String token = jwtService.generateToken(request);
         Map<String, String> response = Collections.singletonMap("token", token);
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping(value = "/")
+    public ResponseEntity<Map<String, String>> helloLogin() {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("hello", "fukin");
+        return ResponseEntity.ok(map);
+    }
+
+    @GetMapping("/test")
+    public ResponseEntity<Map<String, String>> helloMunin() {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("hello", "munin");
+        return ResponseEntity.ok(map);
+
     }
 
 }
