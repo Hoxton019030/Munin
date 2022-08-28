@@ -1,6 +1,6 @@
 package com.raven.munin.model.service;
 
-import com.raven.munin.contorller.exception.MemberException;
+import com.raven.munin.exception.MemberException;
 import com.raven.munin.model.dao.MemberDao;
 import com.raven.munin.model.entity.Member;
 import com.raven.munin.model.request.member.MemberReq;
