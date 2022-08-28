@@ -19,10 +19,10 @@ public class TestController {
         return "Hello User";
     }
 
-    @GetMapping("/users/{id}")
-    public String helloUser(@PathVariable("id")String id) {
-        return "Hello"+id;
-    }
+//    @GetMapping("/users/{id}")
+//    public String helloUser(@PathVariable("id")String id) {
+//        return "Hello"+id;
+//    }
 
 
 

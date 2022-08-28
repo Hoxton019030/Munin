@@ -42,6 +42,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             //Context是一種較抽象的概念，可以想像成該次請求的身分狀態
 
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+            //為了將這個請求的使用者身分告訴伺服器，我們建立UsernamePasswordAuthenticationToken的物件，其中第三個參數放GrantedAuthority的List，作為API的授權檢查
+            //第一個參數(principal)傳入使用者詳請(UserDetails)。
+            // 而第二個參數是credential，通常是密碼，但不傳入也無訪
+            //經由傳入principal，我們得以在業務邏輯中從Context輕易獲取使用者身分的資料
 
 
 

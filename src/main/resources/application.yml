@@ -1,6 +1,3 @@
-
-
-
 server:
   port: 8080
 
@@ -27,4 +24,5 @@ spring:
 
 jwt:
   EXPIRATION_TIME: 1 * 60 * 1000
-  SECRET: "1337"
+  SECRET : "1337"
+  KEY : "HuginAndMuninThoughtAndMemory19970910"

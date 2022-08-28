@@ -2,6 +2,7 @@ package com.raven.munin.model.service;
 
 import com.google.gson.Gson;
 import com.raven.munin.auth.AuthRequest;
+import com.raven.munin.properties.JwToken;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
@@ -9,6 +10,7 @@ import io.jsonwebtoken.security.Keys;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.gson.GsonProperties;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -26,7 +28,8 @@ import java.util.stream.Collectors;
 @Service
 public class JwtService {
 
-    private final String KEY = "HuginAndMuninThoughtAndMemory19970910";
+    @Autowired
+    private JwToken jwToken;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -53,7 +56,7 @@ public class JwtService {
             claims.put("username", userDetails.getUsername()); //設置使用者帳號
             claims.setExpiration(calendar.getTime()); //設置到期時間
             claims.setIssuer("Programming Classroom"); //設置核發者
-            SecretKey secretKey = Keys.hmacShaKeyFor(KEY.getBytes());
+            SecretKey secretKey = Keys.hmacShaKeyFor(jwToken.getKEY().getBytes());
 
 
             return Jwts.builder().setClaims(claims).signWith(secretKey).compact();
@@ -62,7 +65,7 @@ public class JwtService {
 
     }
     public Map<String,Object> parseToken(String token){
-        SecretKey secretKey = Keys.hmacShaKeyFor(KEY.getBytes());
+        SecretKey secretKey = Keys.hmacShaKeyFor(jwToken.getKEY().getBytes());
         //準備好一密鑰
         JwtParser parser = Jwts.parserBuilder().setSigningKey(secretKey).build();
         //建立解析器，建立簽名
