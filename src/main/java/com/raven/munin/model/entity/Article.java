@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
-public class    Article {
+public class Article {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +23,7 @@ public class    Article {
     /**
      * Article's author name
      */
-    @Column(name = "NAME", columnDefinition = "CHARACTER VARYING(200)")
+    @Column(name = "AUTHOR", columnDefinition = "CHARACTER VARYING(200)")
     private String author;
 
     /**
@@ -35,16 +35,16 @@ public class    Article {
     /**
      * Article's content
      */
-    @Column(name = "CONTENT",columnDefinition = "CLOB",nullable = false)
+    @Column(name = "CONTENT", columnDefinition = "CLOB", nullable = false)
     private String content;
 
     /**
      * 控制文章是否可被一般用戶所看見，1為可以，2為不行
      */
-    @Column(name="VISIBLE",columnDefinition = "int",nullable = false)
+    @Column(name = "VISIBLE", columnDefinition = "int", nullable = false)
     private int visible;
 
-    @Column(name = "VIEWS",columnDefinition = "int",nullable = false)
+    @Column(name = "VIEWS", columnDefinition = "int", nullable = false)
     private int views;
 
 
