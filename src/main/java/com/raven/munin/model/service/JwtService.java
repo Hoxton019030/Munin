@@ -2,6 +2,7 @@ package com.raven.munin.model.service;
 
 import com.raven.munin.auth.AuthRequest;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.junit.Test;
@@ -10,11 +11,15 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
 import java.util.Calendar;
+import java.util.Map;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Service
 public class JwtService {
@@ -24,6 +29,7 @@ public class JwtService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    // FIXME: 2022/8/28 不知道為什麼作用不了，使用debugger確認後發現AuthenticationManager一直是null，但不知道怎麼解決
     public String generateToken(AuthRequest request) {
         Authentication usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword());
         // AuthenticationManager支持多種身分驗證方式，執行時會接收Authentication介面的物件。若是以帳號密碼的方式來驗證，
@@ -51,6 +57,18 @@ public class JwtService {
             return Jwts.builder().setClaims(claims).signWith(secretKey).compact();
         }
 
+
+    }
+    public Map<String,Object> parseToken(String token){
+        SecretKey secretKey = Keys.hmacShaKeyFor(KEY.getBytes());
+        //準備好一密鑰
+        JwtParser parser = Jwts.parserBuilder().setSigningKey(secretKey).build();
+        //建立解析器，建立簽名
+        Claims claims = parser.parseClaimsJwt(token).getBody();
+        //透過解析器的parseClaimJwt方法，可以解析含有簽名的JWT，再呼叫getBody方法，取得claims(所有權)物件，
+        //若JWT的內容有存生肖期間或到期期間，在解析時，parser會去自動判斷這個token是否在有效期間內，若不在
+        //期間內則會拋出io.jsonwebtoken.ExpiredJwtException的例外
+        return claims.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue));
 
     }
 }
