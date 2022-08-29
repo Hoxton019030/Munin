@@ -11,6 +11,10 @@ import java.util.Optional;
 @Repository
 public interface MemberDao extends JpaRepository<Member, Integer> {
 
+    /**
+     * @param id 是使用者帳號！！！不是編號的那個ID
+     * @return
+     */
     @Query(value = "SELECT * FROM MEMBER WHERE id =:id",nativeQuery = true)
     public Optional<Member> findMemberById(@Param("id") String id);
 
