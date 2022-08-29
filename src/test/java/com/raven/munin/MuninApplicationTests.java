@@ -8,6 +8,7 @@ class MuninApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 	}
 
 
