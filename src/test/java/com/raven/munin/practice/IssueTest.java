@@ -1,7 +1,7 @@
 package com.raven.munin.practice;
 
 import org.assertj.core.api.SoftAssertions;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * 錯誤示範
