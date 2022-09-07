@@ -52,7 +52,7 @@ public class JwtService {
             SecretKey secretKey = Keys.hmacShaKeyFor(jwTokenProperties.getKEY().getBytes());
 
 
-            return Jwts.builder().setClaims(claims).signWith(secretKey).compact();
+            return Jwts.builder().setClaims(claims).signWith(SignatureAlgorithm.ES256,secretKey).compact();
         }
 
 
