@@ -4,7 +4,7 @@
     <Appenders>
 
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout disableAnsi="false" pattern="%style{%d{ISO8601}}{bright,green} %highlight{%-5level} [%style{%t}{bright,blue}] %style{%C{}}{bright,yellow}: %msg%n%style{%throwable}{red}"/>
+            <PatternLayout disableAnsi="false" pattern="%style{%d{ISO8601}}{bright,green} %highlight{%-5level} [%style{%t}{bright,blue}] %style{%X{requestid}}{bright,red} %style{%C{}}{bright,yellow}: %msg%n%style{%throwable}{red}"/>
         </Console>
 
         <RollingFile name="RollingFile"
