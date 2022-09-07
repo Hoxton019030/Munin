@@ -26,7 +26,7 @@ public class LoggingAspect {
      * @param joinPoint\
      * @return Object代表目標的回傳值
      */
-    @Around("@within(org.springframework.web.bind.annotation.RestController)) && within(com." )
+    @Around("@within(org.springframework.web.bind.annotation.RestController)) && within(com.raven.munin.model.service..*" )
     public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {
         logger.debug("Request for {}.{}() with arguments [s] = {}" ,joinPoint.getSignature().getDeclaringTypeName(),joinPoint.getSignature().getName(), Arrays.toString(joinPoint.getArgs()));
         Instant start = Instant.now();
