@@ -24,7 +24,7 @@ public class MemberService {
         return memberDao.findMemberById(id).orElseThrow(() -> new MemberException("無此使用者"));
     }
 
-    public MemberRes createMember(MemberReq memberReq){
+    public void createMember(MemberReq memberReq){
         Optional<Member> member = memberDao.findMemberById(memberReq.getId());
         if(member.isEmpty()){
             Member newMember = new Member(
@@ -35,7 +35,7 @@ public class MemberService {
                     LocalDateTime.now(),
                     memberReq.getAuthority());
             memberDao.save(newMember);
-            return MemberRes.builder().member(newMember).build();
+            MemberRes.builder().member(newMember).build();
         }
         else {
             throw new MemberException("該用戶已存在");

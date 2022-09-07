@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+
+    <Appenders>
+
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout disableAnsi="false" pattern="%style{%d{ISO8601}}{bright,green} %highlight{%-5level} [%style{%t}{bright,blue}] %style{%X{requestid}}{bright,red} %style{%C{}}{bright,yellow}: %msg%n%style{%throwable}{red}"/>
+        </Console>
+
+        <RollingFile name="RollingFile"
+                     fileName="c://work/logs/spring-boot-logger-log4j2.log"
+                     filePattern="c://work/logs/$${date:yyyy-MM}/spring-boot-logger-log4j2-%d{-dd-MMMM-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <pattern> %d %p %C{1.} [%t] %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <OnStartupTriggeringPolicy/>
+                <SizeBasedTrigeringPolicy size="10MB" />
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingFile>
+
+    </Appenders>
+
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFile" ></AppenderRef>
+        </Root>
+<!--        <Logger name="com.raven.munin.model.service" level="debug"/>-->
+        <Logger name="com.raven.munin.controller" level="DEBUG"/>
+    </Loggers>
+
+</Configuration>
+
+
+
+
