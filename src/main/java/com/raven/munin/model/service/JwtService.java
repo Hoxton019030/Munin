@@ -5,6 +5,7 @@ import com.raven.munin.properties.JwTokenProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -51,7 +52,7 @@ public class JwtService {
             SecretKey secretKey = Keys.hmacShaKeyFor(jwTokenProperties.getKEY().getBytes());
 
 
-            return Jwts.builder().setClaims(claims).signWith(secretKey).compact();
+            return Jwts.builder().setClaims(claims).signWith(SignatureAlgorithm.ES256,secretKey).compact();
         }
 
 
