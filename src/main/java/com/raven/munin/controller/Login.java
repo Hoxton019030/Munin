@@ -1,9 +1,8 @@
-package com.raven.munin.contorller;
+package com.raven.munin.controller;
 
 import com.raven.munin.auth.AuthRequest;
 import com.raven.munin.model.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

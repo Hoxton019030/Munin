@@ -30,3 +30,9 @@ jwt:
   # 時間為分鐘
   SECRET : "1337"
   KEY : "HuginAndMuninThoughtAndMemory19970910"
+
+logging:
+  level:
+    root: INFO
+    com.raven.munin.model.service: DEBUG
+  config: classpath:local/log4j2.xml

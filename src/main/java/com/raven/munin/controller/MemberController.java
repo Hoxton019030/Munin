@@ -1,4 +1,4 @@
-package com.raven.munin.contorller;
+package com.raven.munin.controller;
 
 import com.raven.munin.model.entity.Member;
 import com.raven.munin.model.service.MemberService;
