@@ -125,6 +125,13 @@
 			<version>2.18.0</version>
 		</dependency>
 
+    <!--排程器-->
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+
 
 
 	</dependencies>
