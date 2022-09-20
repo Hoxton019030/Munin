@@ -1,5 +1,6 @@
 package com.raven.munin.config;
 
+import com.raven.munin.filter.HiFilter;
 import com.raven.munin.filter.LogApiFilter;
 import com.raven.munin.filter.LogProcessTimeFilter;
 import com.raven.munin.filter.PrintResponseRequest;
@@ -40,5 +41,15 @@ public class FilterConfig {
         bean.setOrder(2); //設定過濾器的執行順序
         return bean;
     }
-//////
+
+    @Bean
+    public FilterRegistrationBean<Filter> hiFilterFilter(){
+        FilterRegistrationBean<Filter> bean = new FilterRegistrationBean<>();
+        bean.setFilter(new HiFilter());
+        bean.addUrlPatterns("/*");
+        bean.setName("hiFilterFilter");
+        bean.setOrder(10);
+        return bean;
+
+    }
 }
