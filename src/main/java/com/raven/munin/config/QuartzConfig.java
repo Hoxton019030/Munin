@@ -1,8 +1,14 @@
 package com.raven.munin.config;
 
-import com.raven.munin.schduleJob.TestJob;
+
+import com.raven.munin.quartz.job.OClockAlert;
+import com.raven.munin.quartz.job.PrintNowTimeJob;
+import com.raven.munin.quartz.trigger.CronTrigger;
+import com.raven.munin.quartz.trigger.SimpleTrigger;
 import org.quartz.*;
+import org.quartz.impl.StdScheduler;
 import org.quartz.impl.StdSchedulerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,21 +19,34 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class QuartzConfig {
 
+    @Autowired
+    CronTrigger cronTrigger;
+
+    @Autowired
+    SimpleTrigger simpleTrigger;
+
+
+
     @Bean
-    public JobDetail testQuartz1() {
-        return JobBuilder.newJob(TestJob.class).withIdentity("testTask1").storeDurably(false).build();
+    public void printHelloEverySecond() throws SchedulerException {
+        JobDetail jobDetail = JobBuilder.newJob(PrintNowTimeJob.class)
+                .withIdentity("1","1")
+                .storeDurably()
+                .build();
+        Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+        scheduler.scheduleJob(jobDetail,simpleTrigger.triggeredEverySecond());
+        scheduler.start();
     }
 
     @Bean
-    public Trigger testQuartzTrigger1() {
-        //5秒执行一次
-        SimpleScheduleBuilder scheduleBuilder = SimpleScheduleBuilder.simpleSchedule()
-                .withIntervalInSeconds(1)
-                .repeatForever();
-        return TriggerBuilder.newTrigger().forJob(testQuartz1())
-                .withIdentity("testTask1")
-                .withSchedule(scheduleBuilder)
+    public void OClockAlert() throws SchedulerException {
+        JobDetail jobDetail = JobBuilder.newJob(OClockAlert.class)
+                .withIdentity("2","1")
+                .storeDurably()
                 .build();
+        Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+        scheduler.scheduleJob(jobDetail,cronTrigger.triggeredEveryOClock());
+        scheduler.start();
     }
 
 }
