@@ -49,8 +49,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .csrf().disable()
-                .formLogin();
+                .csrf()
+                .disable();
+//                .formLogin();
         http.headers().frameOptions().disable();
         //讓spring Security可以和h2建立連線
     }

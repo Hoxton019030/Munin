@@ -27,16 +27,16 @@ public class QuartzConfig {
 
 
 
-    @Bean
-    public void printHelloEverySecond() throws SchedulerException {
-        JobDetail jobDetail = JobBuilder.newJob(PrintNowTimeJob.class)
-                .withIdentity("1","1")
-                .storeDurably()
-                .build();
-        Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
-        scheduler.scheduleJob(jobDetail,simpleTrigger.triggeredEverySecond());
-        scheduler.start();
-    }
+//    @Bean
+//    public void printHelloEverySecond() throws SchedulerException {
+//        JobDetail jobDetail = JobBuilder.newJob(PrintNowTimeJob.class)
+//                .withIdentity("1","1")
+//                .storeDurably()
+//                .build();
+//        Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+//        scheduler.scheduleJob(jobDetail,simpleTrigger.triggeredEverySecond());
+//        scheduler.start();
+//    }
 
     @Bean
     public void OClockAlert() throws SchedulerException {

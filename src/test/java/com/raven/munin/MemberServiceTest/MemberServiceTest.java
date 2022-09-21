@@ -18,18 +18,22 @@ public class MemberServiceTest {
     private MemberService memberService;
 
     @Test
-    public void createMember(){
-        MemberReq newMember = MemberReq.builder().id("S05").
+    public void createMemberBOARD_MANAGER(){
+        MemberReq newMember = MemberReq.builder().id("S").
                 password("123").
                 name("Hoxton").
                 createTime(LocalDateTime.now()).
                 updateTime(LocalDateTime.now()).
         authority(MemberAuthority.BOARD_MANAGER).build();
         System.out.println(newMember);
-
         memberService.createMember(newMember);
+    }
+
+    @Test
+    public void createMember(){
 
     }
+
     @Test
     public void print(){
         System.out.println(MemberAuthority.BANNED_MEMBER);
