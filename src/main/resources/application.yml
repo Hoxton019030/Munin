@@ -9,25 +9,21 @@ spring:
   sql:
     init:
       mode: always
+
+
   main:
     #TODO 這是jwtFilter jwtService JwtAuthentication三者有循環依賴的問題
     allow-circular-references: true
 
   datasource:
-    url: jdbc:h2:./munin;AUTO_SERVER=true
+    url: jdbc:h2:~/munin;AUTO_SERVER=true
     driver-class-name: org.h2.Driver #??driver
     username: sa
     password: sa
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
-
-
     hibernate:
       ddl-auto: update
-
-
-
-
 
 jwt:
   EXPIRATION_TIME: 120

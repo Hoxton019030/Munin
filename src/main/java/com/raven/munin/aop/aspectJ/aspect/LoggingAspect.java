@@ -1,4 +1,4 @@
-package com.raven.munin.aop.aspect;
+package com.raven.munin.aop.aspectJ.aspect;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,7 +18,6 @@ import java.util.Arrays;
 import java.util.Date;
 
 import static com.raven.munin.constant.AOPCons.LOGGER_ORDER;
-import static com.raven.munin.constant.AOPCons.POINTCUT_applicationControllerPackage;
 
 /**
  * @author Hoxton
@@ -39,9 +38,11 @@ public class LoggingAspect {
      * @param joinPoint\
      * @return Object代表目標的回傳值
      */
-    @Around(value ="com.raven.munin.aop.pointcut.PointcutDefinition.applicationControllerPackage()")
+    @Around(value ="com.raven.munin.aop.aspectJ.pointcut.PointcutDefinition.applicationControllerPackage()")
     public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {
-        logger.debug("Request for {}.{}() with arguments [s] = {}", joinPoint.getSignature().getDeclaringTypeName(), joinPoint.getSignature().getName(), Arrays.toString(joinPoint.getArgs()));
+        logger.debug("Request for {}.{}() with arguments [s] = {}", joinPoint.getSignature().getDeclaringTypeName(),
+                joinPoint.getSignature().getName(),
+                Arrays.toString(joinPoint.getArgs()));
         logger.info("logAroundxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
         Instant start = Instant.now();
 

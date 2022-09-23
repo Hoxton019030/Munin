@@ -6,7 +6,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
+@Entity(name = "member")
 @Data
 public class Member {
     @Id
@@ -29,7 +29,7 @@ public class Member {
     /**
      * password(hashcode)
      */
-    @Column(name = "CODE", columnDefinition = "CHARACTER VARYING(500)", nullable = false)
+    @Column(name = "PASSWORD", columnDefinition = "CHARACTER VARYING(500)", nullable = false)
     private String password;
 
     /**
@@ -57,10 +57,8 @@ public class Member {
         this.updateTime = updateTime;
         this.authority = authority;
     }
-
     public Member() {
     }
-    //
 }
 
 

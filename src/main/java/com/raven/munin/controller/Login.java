@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/loggin", produces = MediaType.APPLICATION_JSON_VALUE)
 public class Login {
 
     @Autowired

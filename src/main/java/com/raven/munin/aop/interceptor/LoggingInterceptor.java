@@ -1,4 +1,4 @@
-package com.raven.munin.aop;
+package com.raven.munin.aop.interceptor;
 
 import org.apache.logging.log4j.ThreadContext;
 import org.springframework.web.servlet.HandlerAdapter;

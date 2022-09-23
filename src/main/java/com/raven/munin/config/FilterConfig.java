@@ -1,16 +1,16 @@
 package com.raven.munin.config;
 
-import com.raven.munin.filter.HiFilter;
-import com.raven.munin.filter.LogApiFilter;
-import com.raven.munin.filter.LogProcessTimeFilter;
-import com.raven.munin.filter.PrintResponseRequest;
+import com.raven.munin.aop.filter.HiFilter;
+import com.raven.munin.aop.filter.LogApiFilter;
+import com.raven.munin.aop.filter.LogProcessTimeFilter;
+import com.raven.munin.aop.filter.PrintResponseRequest;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.Filter;
 
-@Configuration
+//@Configuration
 public class FilterConfig {
     //test
     @Bean

@@ -1,4 +1,4 @@
-package com.raven.munin.filter;
+package com.raven.munin.aop.filter;
 
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -11,7 +11,6 @@ import java.io.IOException;
 public class LogApiFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        filterChain.doFilter(request,response);
         int httpStatus = response.getStatus(); //200,403,404之類的
         String httpMethod = request.getMethod();
         String uri = request.getRequestURI();
@@ -21,5 +20,6 @@ public class LogApiFilter extends OncePerRequestFilter {
         }
         System.out.println(String.join(" ", String.valueOf(httpStatus), httpMethod, uri));
 
+        filterChain.doFilter(request,response);
     }
 }

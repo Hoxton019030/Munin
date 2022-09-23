@@ -49,4 +49,5 @@ public class    Article {
      */
     @Column(name = "UPDATE_TIME", columnDefinition = "TIMESTAMP", nullable = true)
     private LocalDateTime updateTime;
+
 }

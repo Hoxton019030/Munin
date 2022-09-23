@@ -1,4 +1,4 @@
-package com.raven.munin.aop.pointcut;
+package com.raven.munin.aop.aspectJ.pointcut;
 
 import org.aspectj.lang.annotation.Pointcut;
 

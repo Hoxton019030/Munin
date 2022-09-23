@@ -6,7 +6,7 @@ package com.raven.munin.constant;
  */
 public class AOPCons {
     private static final String POINTCUT_DEFINITION_PATH=
-            "com.raven.munin.aop.pointcut.PointcutDefinition.";
+            "com.raven.munin.aop.aspectJ.pointcut.PointcutDefinition.";
 
     public static final String POINTCUT_applicationControllerPackage =
             POINTCUT_DEFINITION_PATH+"applicationControllerPackage()";

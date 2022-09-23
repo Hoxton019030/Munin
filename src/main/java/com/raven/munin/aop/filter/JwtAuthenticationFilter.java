@@ -1,4 +1,4 @@
-package com.raven.munin.filter;
+package com.raven.munin.aop.filter;
 
 import com.raven.munin.model.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +34,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        System.out.println(123);
         String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
         if (authHeader != null) {
             String accessToken = authHeader.replace("Bearer ", "");
