@@ -29,7 +29,7 @@ public class Member {
     /**
      * password(hashcode)
      */
-    @Column(name = "CODE", columnDefinition = "CHARACTER VARYING(500)", nullable = false)
+    @Column(name = "PASSWORD", columnDefinition = "CHARACTER VARYING(500)", nullable = false)
     private String password;
 
     /**
